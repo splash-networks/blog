@@ -3,6 +3,8 @@ title: "Google Workspace Login for Your Web Application"
 layout: post
 ---
 
+![screenshot]({{ site.baseurl }}/assets/images/google-workspace/title.png)
+
 You can use the following steps for integrating Google Workspace login into your web application.
 
 Go to [Google API Console](https://console.cloud.google.com/apis)
