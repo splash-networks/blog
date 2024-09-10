@@ -9,7 +9,7 @@ Go to [Google API Console](https://console.cloud.google.com/apis)
 
 Select OAuth consent screen, and select the User Type *Internal*.
 
-![screenshot](../assets/images/google-workspace/1.png)
+![screenshot]({{ site.baseurl }}/assets/images/google-workspace/1.png)
 
 After clicking Create, enter information related to your application. Under App Information, enter *App name* and *User support email*. Under Authorized domains add your domain. Under Developer contact information add the email addresses that will receive notifications from Google.
 On the next screen there is no need to change any scopes, so click on Save and Continue. Review the summary of what you entered.
