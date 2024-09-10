@@ -16,7 +16,7 @@ On the next screen there is no need to change any scopes, so click on Save and C
 
 Next, go to the Credentials section and click on Create Credentials.
 
-![screenshot](../assets/images/google-workspace/2.png)
+![screenshot]({{ site.baseurl }}/assets/images/google-workspace/2.png)
 
 In the dropdown, select *OAuth client ID*. Under Application type, select *Web Application*. In Authorized redirect URIs enter the URI where Google should redirect the user after successful login.
 
