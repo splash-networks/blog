@@ -191,8 +191,6 @@ For authenticating Windows clients we need to generate CA and server certificate
 
 To generate a self-signed CA certificate (which is what is recommended for RADIUS deployments), open the CA configuration file:
 
-![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/4.png)
-
 ```
 nano /etc/freeradius/3.0/certs/ca.cnf
 ```
@@ -296,19 +294,19 @@ systemctl restart freeradius
 
 Download *ca.pem* and *ca.der* certificates from */etc/freeradius/3.0/certs/* and distribute to your clients. On a Windows client, *ca.der* certificate can be installed by double-clicking on it and following the installation wizard:
 
-![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/5.png)
+![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/4.png)
 
 Place the certificate in *Trusted Root Certification Authorities* store:
 
-![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/6.png)
+![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/5.png)
 
 After completing the wizard, accept the security warning:
 
-![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/7.png)
+![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/6.png)
 
 Connect to the WiFi by entering your username and password. If it shows you the certificate information click on Connect to continue:
 
-![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/8.png)
+![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/7.png)
 
 #### UBUNTU
 
@@ -326,7 +324,7 @@ sudo update-ca-certificates
 
 Connect to WiFi by selecting Authentication *Tunneled TLS*, Inner authentication *GTC* and entering your username and password:
 
-![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/9.png)
+![screenshot]({{ site.baseurl }}/assets/images/freeradius-google-g-suite/8.png)
 
 ### Troubleshooting
 
