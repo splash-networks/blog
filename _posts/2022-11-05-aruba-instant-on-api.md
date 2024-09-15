@@ -5,7 +5,7 @@ layout: post
 
 ![screenshot]({{ site.baseurl }}/assets/images/aruba-instant-on-api/title.png)
 
-Aruba’s Instant On product line consists of plug and play access points and switches that are managed from the cloud. The cloud management portal – located at https://portal.arubainstanton.com – is free and does not require purchasing any license.
+Aruba’s Instant On product line consists of plug and play access points and switches that are managed from the cloud. The cloud management portal – located at [https://portal.arubainstanton.com]() – is free and does not require purchasing any license.
 
 <!--more-->
 
