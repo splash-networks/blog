@@ -3,12 +3,11 @@ author: "Nasir Hafeez"
 description: "Powered By <b style=\"color: #f45;\">Splash Networks</b>"
 permalink: /:title/
 lang: "en"
-excerpt_separator: "\n\n\n"
+#excerpt_separator: "\n\n\n"
 date_format: "%B %d, %Y"
 
 # ADDED BY NASIR
 
-baseurl: ""
 excerpt_separator: "<!--more-->"
 # Layout
 
