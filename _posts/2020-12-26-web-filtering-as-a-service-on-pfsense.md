@@ -185,4 +185,4 @@ It will start sending all new entries in */var/squidGuard/log/block.log* to sysl
 
 ### References
 
-https://openschoolsolutions.org/pfsense-web-filter-filter-https-squidguard/
+[https://openschoolsolutions.org/pfsense-web-filter-filter-https-squidguard/]()
