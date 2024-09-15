@@ -69,7 +69,7 @@ Press Save to save changes.
 
 In pfSense go to Interface => Assignments and assign the OpenVPN *ovpns1* interface to LAN (this assignment will come in handy when we have to setup Squid proxy later):
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/interface.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/10.png)
 
 Select LAN and enable this interface.
 
@@ -81,11 +81,11 @@ It is vitally important that the clients and pfSense appliance both use the same
 
 Go to Services => DNS Resolver. Enable it and make sure it is enabled on all interfaces.
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/10.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/11.png)
 
 Uncheck DNSSEC Support:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/11.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/12.png)
 
 Click Save at the bottom of the page.
 
@@ -95,23 +95,23 @@ Go to System => Package Manager and download the packages named Squid and squidG
 
 After installation go to Services => Squid Proxy Server. First, we need to setup Local Cache. Go to Local Cache, set Hard Disk Cache Size as 500 MB and Clear Disk Cache once.
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/12.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/13.png)
 
 Click Save and go back to the General tab. Under Squid General Settings check Enable Squid Proxy option and select all interfaces in Proxy Interface(s).
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/13.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/14.png)
 
 Under Transparent Proxy Settings enable Transparent HTTP Proxy and select all interfaces.
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/14.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/15.png)
 
 Similarly, under SSL Man in the Middle Filtering enable HTTPS/SSL Interception, SSL/MITM Mode should be “Splice All” and select all interfaces:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/15.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/16.png)
 
 Enable Access Logging and click Save at the bottom of the page:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/16.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/17.png)
 
 Squid Proxy has been set up.
 
@@ -121,21 +121,21 @@ To send Squid logs to syslog click on the “Show Advanced Options” button at 
 access_log syslog:local4.info
 ```
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/17.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/18.png)
 
 Now we will configure SquidGuard Proxy Filter. Go to Services => SquidGuard Proxy Filter. Go to Target Categories and create a rule for URL filtering. In Domain List enter the domains you want to blacklist or whitelist:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/18.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/19.png)
 
 Under General Options check Enable and click Apply. Under Logging options check Enable log and Enable log rotation.
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/19.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/20.png)
 
 Click Save and Apply.
 
 To apply common rules that apply to all users go to Common ACL and setup access rules like this:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/20.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/21.png)
 
 The “Default access [all]” rule applies to all traffic. If we set it to “allow” it will allow all websites by default and any domains that need to be filtered will have to be blacklisted manually. If we set it to “deny” all domains will be blocked by default and any domain that needs to be allowed will have to be whitelisted manually.
 
@@ -143,7 +143,7 @@ It’s a good practice to check “Do not allow IP-Addresses in URL” so that u
 
 After any configuration change in SquidGuard, click on the Apply button in General Settings for the changes to take effect:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/21.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/22.png)
 
 ### Per User URL Filtering
 
@@ -151,7 +151,7 @@ To apply different URL filtering rules for different users, go to Groups ACL and
 
 In Client (source) enter the static IP address of the user:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/22.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/23.png)
 
 In Target Rules enter the URL filtering policies for the user. In this case the domains mentioned in the “custom_test” ruleset will be blocked while all other websites will be allowed for this user.
 
@@ -159,19 +159,19 @@ In Target Rules enter the URL filtering policies for the user. In this case the 
 
 The websites being visited by users are shown in the Squid access logs:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/23.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/24.png)
 
 Another tool for Squid reporting is LightSquid. To use it install the Lightsquid package. Then set it up by going to Status => Squid Proxy Reports. Configure its settings and click on the Refresh Full button. Then click on the Open Lightsquid button to access Lightsquid reports. It can give per-user (per-IP) reports of domains visited by the user as well as the data transferred:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/24.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/25.png)
 
 The total upload/download of a user can be seen in Status => OpenVPN:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/25.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/26.png)
 
 To enable remote logging to a syslog server, go to Status => System Logs => Settings and click on Enable Remote Logging. Enter the IP address(es) of remote syslog servers and select the log categories:
 
-![screenshot]({{ site.baseurl }}/assets/images/web-filtering/26.png)
+![screenshot]({{ site.baseurl }}/assets/images/web-filtering/27.png)
 
 By selecting Everything all syslogs from the pfSense appliance including Squid logs would then be available on the Syslog server.
 
