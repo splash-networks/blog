@@ -179,25 +179,25 @@ Their paths are given below:
 
 Open Mikrotik router using Winbox and drag and drop these files:
 
-![screenshot]({{ site.baseurl }}/assets/images/openvpn-server-mikrotik/1.png)
+![screenshot](../assets/images/openvpn-server-mikrotik/1.png)
 
 *Install Certificates:*
 
 Go to System -> Certificates and import `ca.crt`:
 
-![screenshot]({{ site.baseurl }}/assets/images/openvpn-server-mikrotik/2.png)
+![screenshot](../assets/images/openvpn-server-mikrotik/2.png)
 
 The passphrase for CA will also have to be entered.
 
 Similarly import `mikrotik1.crt` and `mikrotik1.key` (passphrase will not be required for importing these).
 
-![screenshot]({{ site.baseurl }}/assets/images/openvpn-server-mikrotik/3.png)
+![screenshot](../assets/images/openvpn-server-mikrotik/3.png)
 
 *Create an OVPN Client connection:*
 
 Go to PPP -> Interface and add a new “OVPN Client” interface. Give it a name of your choice. Go to “Dial Out” tab and set the following properties:
 
-![screenshot]({{ site.baseurl }}/assets/images/openvpn-server-mikrotik/4.png)
+![screenshot](../assets/images/openvpn-server-mikrotik/4.png)
 
 The IP address/hostname of the server needs to be entered in the “Connect To” field. The username and password can be anything; it doesn’t really matter. However, they are mandatory and cannot be left blank. If everything went well your VPN should be connected.
 

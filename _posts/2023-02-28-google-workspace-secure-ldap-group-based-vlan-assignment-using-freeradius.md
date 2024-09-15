@@ -3,7 +3,7 @@ title: "Google Workspace Secure LDAP Group Based VLAN Assignment using FreeRADIU
 layout: post
 ---
 
-![screenshot]({{ site.baseurl }}/assets/images/group-based-vlan-assignment/title.png)
+![screenshot](../assets/images/group-based-vlan-assignment/title.png)
 
 In this post we’ll be looking at using FreeRADIUS integrated with Google Workspace Secure LDAP to perform VLAN assignment for WPA enterprise users. This setup has been tested with Ubiquiti Unifi and Cisco Meraki successfully. FreeRADIUS setup and Google Workspace integration has been covered in a previous post so please check it out to understand the prerequisites of this setup.
 
