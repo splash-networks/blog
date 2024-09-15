@@ -3,7 +3,7 @@ title: "OpenVPN Server for Mikrotik On Docker"
 layout: post
 ---
 
-![screenshot]({{ site.baseurl }}/assets/images/openvpn-server-mikrotik/title.png)
+![screenshot](../assets/images/openvpn-server-mikrotik/title.png)
 
 A convenient way to remotely access and manage a Mikrotik router that is behind NAT is to set it up as an OpenVPN client. It will then be accessible from the VPN server or by other VPN clients. In this guide we’ll document a procedure for setting up an OpenVPN server in Docker and configure it to work with Mikrotik.
 
