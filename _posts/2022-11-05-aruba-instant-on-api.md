@@ -51,7 +51,7 @@ The companion Postman collection includes more endpoints such as *alerts*, *admi
 
 Some API endpoints can be used for making changes by issuing requests using HTTP PUT verb. Suppose we want to change the RADIUS server being used for authorizing guests on the network. We will first fetch the existing settings using *guestPortalSettings* endpoint:
 
-![screenshot]({{ site.baseurl }}/assets/images/aruba-instant-on-api/7.png)
+![screenshot]({{ site.baseurl }}/assets/images/aruba-instant-on-api/8.png)
 
 We will copy the complete JSON returned in response body, and substitute the new RADIUS address and secret in *serverHost* and *sharedSecret* parameters. Then we will issue a PUT request to the same API endpoint:
 
