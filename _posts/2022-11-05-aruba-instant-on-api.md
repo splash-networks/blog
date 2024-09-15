@@ -1,5 +1,5 @@
 ---
-title: "Google Workspace Secure LDAP Group Based VLAN Assignment using FreeRADIUS"
+title: "Aruba Instant On API"
 layout: post
 ---
 

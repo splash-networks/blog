@@ -1,5 +1,5 @@
 ---
-title: "Web Filtering as a Service on pfSense"
+title: "FreeRADIUS with Google G Suite/Workspace Secure LDAP for WPA2 Enterprise WiFi"
 layout: post
 ---
 
