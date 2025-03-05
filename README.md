@@ -4,8 +4,6 @@ permalink: "/about/"
 layout: page
 ---
 
-I’m a network specialist with 10+ years of experience in designing, configuring, troubleshooting, and documenting diverse IT scenarios for ISPs, enterprises and startups.
+Established in 2023, [Splash Networks](https://splashnetworks.co) is working in the guest WiFi and network automation space. We work across industries such as hospitality, retail, transit, education, and commercial venues, delivering secure and scalable connectivity solutions.
 
-My career started in 2011 with an ISP, Nayatel – the first FTTP provider in Pakistan. After working there for two years I moved to Huawei Technologies. In 2014, I became CCIE (R&S) # 42907. I left Huawei after 4+ years and in 2018 began working as a self-employed freelancer helping small businesses and enterprises with their IT needs.
-
-In 2023, I started a company [Splash Networks](https://splashnetworks.co) that is working in the guest WiFi and network automation space, mostly for the hospitality sector.
+In this blog we document our technical learnings, project experiences, and insights into WiFi captive portals, networking, authentication systems, and API integrations.
