@@ -55,7 +55,9 @@ We will need to upload the updated file back to the router's hotspot directory.
 
 To see the response we are getting from the API endpoint we can access it in a browser on a hotspot client:
 
-![screenshot](../assets/images/captive-portal-api/api-response.png)
+<div style="text-align: center;">
+    <img src="../assets/images/captive-portal-api/api-response.png" alt="screenshot" width="80%" />
+</div>
 
 Once the user is authorized the response will start showing `"captive": false`.
 
