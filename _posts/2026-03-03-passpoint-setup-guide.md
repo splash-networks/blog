@@ -60,7 +60,7 @@ Next we will go to WiFi Interfaces and either create a new SSID or modify an exi
     <img src="../assets/images/passpoint-setup-guide/wlan-setup.png" alt="screenshot" width="80%" />
 </div>
 
-Then we will add a RADIUS server. In service *wireless* will be checked. We will specify the IP address and Secret of our RADIUS server (setup details given below).
+Then we will add a RADIUS server. In Service **wireless** will be checked. We will specify the IP address and Secret of our RADIUS server (setup details given below).
 
 <div style="text-align: center;">
     <img src="../assets/images/passpoint-setup-guide/radius.png" alt="screenshot" width="60%" />
