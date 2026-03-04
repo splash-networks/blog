@@ -148,7 +148,7 @@ In *certificate_authority* section enter your organization’s information:
 ```
 countryName             = US
 stateOrProvinceName     = NM
-localityName            = Alburbuerque
+localityName            = Albuquerque
 organizationName        = Splash Networks
 emailAddress            = hello@splashnetworks.co
 commonName              = "Splash Certificate Authority"
@@ -185,7 +185,7 @@ output_password         = tj367tHXVK
 [server]
 countryName             = US
 stateOrProvinceName     = NM
-localityName            = Alburbuerque
+localityName            = Albuquerque
 organizationName        = Splash Networks
 emailAddress            = hello@splashnetworks.co
 commonName              = "splashnetworks.co"
