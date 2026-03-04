@@ -17,8 +17,8 @@ A 802.11u supported MikroTik AP (Mikrotik cAP ac in our case) will work as a Pas
 
 First we'll go to Wireless > Security Profiles and create a new Security Profile. These settings are configured:
 
-**Mode**: dynamic keys
-**Authentication Types**: WPA2 EAP
+ - **Mode**: dynamic keys
+ - **Authentication Types**: WPA2 EAP
 
 <div style="text-align: center;">
     <img src="../assets/images/passpoint-setup-guide/security-profile-1.png" alt="screenshot" width="70%" />
@@ -28,9 +28,9 @@ First we'll go to Wireless > Security Profiles and create a new Security Profile
 
 In EAP tab use these settings:
 
-**EAP Methos**: passthrough
-**TLS Mode**: no certificates
-**TLS Certificate**: none
+ - **EAP Methos**: passthrough
+ - **TLS Mode**: no certificates
+ - **TLS Certificate**: none
 
 <div style="text-align: center;">
     <img src="../assets/images/passpoint-setup-guide/security-profile-2.png" alt="screenshot" width="70%" />
