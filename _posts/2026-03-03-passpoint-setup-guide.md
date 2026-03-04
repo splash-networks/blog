@@ -20,7 +20,9 @@ First we'll go to Wireless > Security Profiles and create a new Security Profile
 **Mode**: dynamic keys
 **Authentication Types**: WPA2 EAP
 
-![screenshot](../assets/images/passpoint-setup-guide/security-profile-1.png)
+<div style="text-align: center;">
+    <img src="../assets/images/passpoint-setup-guide/security-profile-1.png" alt="screenshot" width="70%" />
+</div>
 
 (Optional): Go to RADIUS tab and enable EAP accounting and Interim Updates if required.
 
@@ -30,27 +32,39 @@ In EAP tab use these settings:
 **TLS Mode**: no certificates
 **TLS Certificate**: none
 
-![screenshot](../assets/images/passpoint-setup-guide/security-profile-2.png)
+<div style="text-align: center;">
+    <img src="../assets/images/passpoint-setup-guide/security-profile-2.png" alt="screenshot" width="70%" />
+</div>
 
 Click Ok to save the profile. Then go to Wireless > Interworking Profile and create a new profile. Give it a name, select a Network and Venue Type and select Internet.
 
-![screenshot](../assets/images/passpoint-setup-guide/interworking-1.png)
+<div style="text-align: center;">
+    <img src="../assets/images/passpoint-setup-guide/interworking-1.png" alt="screenshot" width="60%" />
+</div>
 
 In ANQP (Access Network Query Protocol) we will define the domain name of this Passpoint network. The same domain name will be configured in the Passpoint profile which will be installed in Wi-Fi client devices. When the domain and settings match the device will be able to connect automatically. The configuration will be like this:
 
-![screenshot](../assets/images/passpoint-setup-guide/interworking-2.png)
+<div style="text-align: center;">
+    <img src="../assets/images/passpoint-setup-guide/interworking-2.png" alt="screenshot" width="60%" />
+</div>
 
 In Hotspot 2.0 tab we will enable Hotspot 2.0 and set WAN Downlink and WAN Uplink speeds (in kbps):
 
-![screenshot](../assets/images/passpoint-setup-guide/interworking-3.png)
+<div style="text-align: center;">
+    <img src="../assets/images/passpoint-setup-guide/interworking-3.png" alt="screenshot" width="60%" />
+</div>
 
 Next we will go to WiFi Interfaces and either create a new SSID or modify an existing SSID. We will select the Security Profile and Interworking Profile we created earlier.
 
-![screenshot](../assets/images/passpoint-setup-guide/wlan-setup.png)
+<div style="text-align: center;">
+    <img src="../assets/images/passpoint-setup-guide/wlan-setup.png" alt="screenshot" width="80%" />
+</div>
 
 Then we will add a RADIUS server. In service *wireless* will be checked. We will specify the IP address and Secret of our RADIUS server (setup details given below).
 
-![screenshot](../assets/images/passpoint-setup-guide/radius.png)
+<div style="text-align: center;">
+    <img src="../assets/images/passpoint-setup-guide/radius.png" alt="screenshot" width="60%" />
+</div>
 
 Once this is completed, MikroTik is ready to hand off authentication requests securely to the RADIUS server.
 
@@ -247,7 +261,9 @@ A wizard will start. We can fill the prompts in this way to generate profiles:
 
 The profiles will be saved in the profiles folder:
 
-![screenshot](../assets/images/passpoint-setup-guide/profiles.png)
+<div style="text-align: center;">
+    <img src="../assets/images/passpoint-setup-guide/profiles.png" alt="screenshot" width="60%" />
+</div>
 
 ### Installing Profiles
 
