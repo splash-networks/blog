@@ -275,15 +275,17 @@ This should prompt you to install the profile. If there was any error the Androi
 
 The process of installing profile on Android and getting connected can be seen here:
 
-<iframe 
-  width="315" 
-  height="560"
-  src="https://www.youtube.com/embed/Oz-Fsa1LgMY"
-  title="YouTube Short"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
-</iframe>
+<div style="text-align: center;">
+    <iframe 
+      width="315" 
+      height="560"
+      src="https://www.youtube.com/embed/Oz-Fsa1LgMY"
+      title="YouTube Short"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+</div>
 
 ## Uploading to iOS
 
@@ -297,12 +299,14 @@ There will be an option to install the profile.
 
 An example can be seen in this video:
 
-<iframe 
-  width="315" 
-  height="560"
-  src="https://www.youtube.com/embed/XTgZ6-_YHYM"
-  title="YouTube Short"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
-</iframe>
+<div style="text-align: center;">
+    <iframe 
+      width="315" 
+      height="560"
+      src="https://www.youtube.com/embed/XTgZ6-_YHYM"
+      title="YouTube Short"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+</div>

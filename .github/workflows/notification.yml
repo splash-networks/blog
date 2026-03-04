@@ -1,0 +1,52 @@
+name: Build, Deploy and Notify
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+      - run: bundle exec jekyll build
+      - uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build-and-deploy
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/deploy-pages@v4
+
+  notify:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{
+            "embeds": [{
+              "title": "🚀 Blog successfully deployed",
+              "description": "✅ The update for *${{ github.repository }}* has been successfully built and deployed!",
+              "color": 65280,
+              "fields": [
+                {
+                  "name": "Commit",
+                  "value": "[${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})"
+                }
+              ]
+            }]
+          }' ${{ secrets.DISCORD_WEBHOOK_URL }}
