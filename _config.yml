@@ -1,6 +1,10 @@
-title: "Networking & Automation"
-author: "Splash Networks"
-description: "Powered By <b style=\"color: #f45;\">Splash Networks</b>"
+title: "Splash Networks Blog"
+author: "Nasir Hafeez"
+description: "Guides on guest Wi-Fi, captive portals, RADIUS, MikroTik and network automation from Splash Networks."
+footer_text: "Powered By <b style=\"color: #f45;\">Splash Networks</b>"
+url: "https://blog.splashnetworks.co"
+baseurl: ""
+logo: "/assets/images/about/11.png"
 permalink: /:title/
 lang: "en"
 #excerpt_separator: "\n\n\n"
@@ -20,12 +24,23 @@ minimal: false             # use a dark header
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
   - {file: "index.html"}
-  - {file: "README.md"}
+  - {file: "about.md"}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
   - {title: Mail, icon: envelope, url: "mailto:hello@splashnetworks.co"}
   - {title: Youtube, icon: youtube, url: "https://www.youtube.com/@splashnetworksco"}
   - {title: LinkedIn, icon: linkedin, url: "https://www.linkedin.com/company/splash-networks/"}
+
+# SEO (jekyll-seo-tag)
+
+social:
+  name: "Splash Networks"
+  links:
+    - "https://www.youtube.com/@splashnetworksco"
+    - "https://www.linkedin.com/company/splash-networks/"
+
+exclude:
+  - CLAUDE.md
 
 comments:
 #  disqus_shortname: ""    # see https://disqus.com/
@@ -33,3 +48,5 @@ comments:
 
 plugins:
  - jekyll-feed
+ - jekyll-seo-tag
+ - jekyll-sitemap
