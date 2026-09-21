@@ -40,8 +40,10 @@ Pushing to `master` triggers `.github/workflows/notification.yml`: `jekyll build
 - `last_modified_at` starts as the filename date. Update it by hand, only when a post is substantively revised. When it differs from the post date, `_includes/meta.html` shows an "Updated" line and the JSON-LD `dateModified` changes.
 - `tags` are metadata only (nothing renders them yet). Use the existing vocabulary: `freeradius`, `mikrotik`, `google-workspace`, `wifi-authentication`, `captive-portal`, `vpn`, `api`, `passpoint`, `pfsense`.
 - Convention in every post: intro paragraph(s), a banner image, then `<!--more-->` (this ends the home-page excerpt), then the body with `##` headings.
+- Every image needs descriptive alt text that says what the screen shows (for example "MikroTik RADIUS Incoming dialog with Accept checked"), never a generic "screenshot". Use the official product spellings: MikroTik, WireGuard, UniFi, WinBox, Wi-Fi.
 - Images go in `assets/images/<post-slug>/` and are referenced relatively as `../assets/images/<post-slug>/file.png`. To control width, use a centered `<div style="text-align: center;"><img ... width="70%" /></div>` (recent commits are mostly image-width tweaks).
-- Permalinks are `/:title/`, so changing a post's title or filename changes its URL. Avoid that for published posts, because it breaks inbound links and SEO.
+- Permalinks are `/:title/`, where `:title` is the slug from the **filename** (not the `title` front matter). Renaming a published post's file changes its URL and breaks inbound links and SEO, but editing its `title` is safe.
+- Everything above `<!--more-->` is shown on the home page as the excerpt, so don't put section headings there.
 
 ## SEO/AEO notes
 

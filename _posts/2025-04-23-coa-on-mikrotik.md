@@ -1,26 +1,26 @@
 ---
-title: "RADIUS Change of Authorization (CoA) on Mikrotik"
+title: "RADIUS Change of Authorization (CoA) on MikroTik"
 description: "How to send RADIUS Change of Authorization (CoA) from FreeRADIUS to a MikroTik router to update hotspot user sessions over UDP port 3799."
 layout: post
 last_modified_at: 2025-04-23
 tags: [freeradius, mikrotik, captive-portal]
 ---
 
-To trigger Change of Authorization (CoA) from FreeRADIUS to a Mikrotik router to update the session parameters of a hotspot user you can follow these steps:
+To trigger Change of Authorization (CoA) from FreeRADIUS to a MikroTik router to update the session parameters of a hotspot user you can follow these steps:
 
-Access the Mikrotik router via Winbox. Go to `RADIUS` to add a RADIUS server like this:
+Access the MikroTik router via WinBox. Go to `RADIUS` to add a RADIUS server like this:
 
-![screenshot](../assets/images/coa-on-mikrotik/radius.png)
+![MikroTik RADIUS server settings with the hotspot service, server address and secret highlighted](../assets/images/coa-on-mikrotik/radius.png)
 
 <!--more-->
 
 Then click on Incoming and check the Accept option.
 
-![screenshot](../assets/images/coa-on-mikrotik/incoming.png)
+![MikroTik RADIUS Incoming dialog with Accept checked and port 3799](../assets/images/coa-on-mikrotik/incoming.png)
 
 Create a firewall entry for `input` chain to allow incoming UDP port 3799 traffic (you can specify the IP address of your RADIUS server(s) in Src. Address).
 
-![screenshot](../assets/images/coa-on-mikrotik/firewall.png)
+![MikroTik firewall filter rule with chain input, protocol UDP, destination port 3799 and action accept](../assets/images/coa-on-mikrotik/firewall.png)
 
 On the FreeRADIUS server, create a file `coa` with the `User-Name` and `Framed-IP-Address` of the user you want to apply the change to. Suppose you want to update the `Session-Timeout` of this user:
 

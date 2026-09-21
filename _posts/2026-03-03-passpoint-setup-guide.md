@@ -1,5 +1,5 @@
 ---
-title: "Passpoint Setup Guide using FreeRADIUS and Mikrotik"
+title: "Passpoint Setup Guide using FreeRADIUS and MikroTik"
 description: "Step-by-step Passpoint (Hotspot 2.0) setup with MikroTik and FreeRADIUS, plus how to generate Passpoint profiles for Android and iOS."
 layout: post
 image: /assets/images/passpoint-setup-guide/banner.png
@@ -11,11 +11,11 @@ People are often wary of using public Wi‑Fi because it lacks security. Captive
 Passpoint (Hotspot 2.0) solves this problem by enabling enterprise‑grade Wi‑Fi security while allowing users to connect automatically, without landing pages or manual login prompts.
 In this guide, we configure Passpoint using MikroTik and FreeRADIUS, and then generate Passpoint profiles for Android and iOS. 
 
-![screenshot](../assets/images/passpoint-setup-guide/banner.png)
+![Passpoint setup guide banner: MikroTik and FreeRADIUS step-by-step tutorial for secure Wi-Fi roaming](../assets/images/passpoint-setup-guide/banner.png)
 
 <!--more-->
 
-A 802.11u supported MikroTik AP (Mikrotik cAP ac in our case) will work as a Passpoint (Hotspot 2.0) access point and forward authentication requests to the RADIUS server.
+An 802.11u supported MikroTik AP (MikroTik cAP ac in our case) will work as a Passpoint (Hotspot 2.0) access point and forward authentication requests to the RADIUS server.
 
 ## Mikrotik Setup:
 
@@ -25,49 +25,49 @@ First we'll go to Wireless > Security Profiles and create a new Security Profile
  - **Authentication Types**: WPA2 EAP
 
 <div style="text-align: center;">
-    <img src="../assets/images/passpoint-setup-guide/security-profile-1.png" alt="screenshot" width="70%" />
+    <img src="../assets/images/passpoint-setup-guide/security-profile-1.png" alt="MikroTik security profile General tab with dynamic keys mode and WPA2 EAP authentication checked" width="70%" />
 </div>
 
 (Optional): Go to RADIUS tab and enable EAP accounting and Interim Updates if required.
 
 In EAP tab use these settings:
 
- - **EAP Methos**: passthrough
+ - **EAP Method**: passthrough
  - **TLS Mode**: no certificates
  - **TLS Certificate**: none
 
 <div style="text-align: center;">
-    <img src="../assets/images/passpoint-setup-guide/security-profile-2.png" alt="screenshot" width="70%" />
+    <img src="../assets/images/passpoint-setup-guide/security-profile-2.png" alt="MikroTik security profile EAP tab with EAP method passthrough, TLS mode no certificates and TLS certificate none" width="70%" />
 </div>
 
 Click Ok to save the profile. Then go to Wireless > Interworking Profile and create a new profile. Give it a name, select a Network and Venue Type and select Internet.
 
 <div style="text-align: center;">
-    <img src="../assets/images/passpoint-setup-guide/interworking-1.png" alt="screenshot" width="60%" />
+    <img src="../assets/images/passpoint-setup-guide/interworking-1.png" alt="MikroTik interworking profile General tab with network type, venue and the Internet option" width="60%" />
 </div>
 
 In ANQP (Access Network Query Protocol) we will define the domain name of this Passpoint network. The same domain name will be configured in the Passpoint profile which will be installed in Wi-Fi client devices. When the domain and settings match the device will be able to connect automatically. The configuration will be like this:
 
 <div style="text-align: center;">
-    <img src="../assets/images/passpoint-setup-guide/interworking-2.png" alt="screenshot" width="60%" />
+    <img src="../assets/images/passpoint-setup-guide/interworking-2.png" alt="MikroTik interworking profile ANQP tab with the Passpoint domain name entered" width="60%" />
 </div>
 
 In Hotspot 2.0 tab we will enable Hotspot 2.0 and set WAN Downlink and WAN Uplink speeds (in kbps):
 
 <div style="text-align: center;">
-    <img src="../assets/images/passpoint-setup-guide/interworking-3.png" alt="screenshot" width="60%" />
+    <img src="../assets/images/passpoint-setup-guide/interworking-3.png" alt="MikroTik interworking profile Hotspot 2.0 tab with Hotspot 2.0 enabled and WAN downlink and uplink speeds set" width="60%" />
 </div>
 
 Next we will go to WiFi Interfaces and either create a new SSID or modify an existing SSID. We will select the Security Profile and Interworking Profile we created earlier.
 
 <div style="text-align: center;">
-    <img src="../assets/images/passpoint-setup-guide/wlan-setup.png" alt="screenshot" width="80%" />
+    <img src="../assets/images/passpoint-setup-guide/wlan-setup.png" alt="MikroTik wireless interface settings with the security profile and interworking profile selected" width="80%" />
 </div>
 
 Then we will add a RADIUS server. In Service **wireless** will be checked. We will specify the IP address and Secret of our RADIUS server (setup details given below).
 
 <div style="text-align: center;">
-    <img src="../assets/images/passpoint-setup-guide/radius.png" alt="screenshot" width="60%" />
+    <img src="../assets/images/passpoint-setup-guide/radius.png" alt="MikroTik RADIUS server entry with the wireless service checked and the RADIUS server address and secret set" width="60%" />
 </div>
 
 Once this is completed, MikroTik is ready to hand off authentication requests securely to the RADIUS server.
@@ -178,7 +178,7 @@ Next generate server certificate by following a similar procedure:
 nano /etc/freeradius/3.0/certs/server.cnf
 ```
 
-Change *default_days* to a large value, *input_password* and *output_password* from their default values and enter your organization’s information in *server* section. Make sure the *commonName* entered here is the Passpoint Domain Name defined in Mikrotik settings. If these values do not match, clients will reject the connection:
+Change *default_days* to a large value, *input_password* and *output_password* from their default values and enter your organization’s information in *server* section. Make sure the *commonName* entered here is the Passpoint Domain Name defined in MikroTik settings. If these values do not match, clients will reject the connection:
 
 ```
 default_days            = 3650
@@ -261,12 +261,12 @@ Run the following command to start a wizard for generating Passpoint profiles. T
 
 A wizard will start. We can fill the prompts in this way to generate profiles:
 
-![screenshot](../assets/images/passpoint-setup-guide/wizard.png)
+![Passpoint profile generator wizard prompts and answers for the network name, domain, credentials and EAP type](../assets/images/passpoint-setup-guide/wizard.png)
 
 The profiles will be saved in the profiles folder:
 
 <div style="text-align: center;">
-    <img src="../assets/images/passpoint-setup-guide/profiles.png" alt="screenshot" width="60%" />
+    <img src="../assets/images/passpoint-setup-guide/profiles.png" alt="Project folder showing the generated Android profile.xml and iOS profile.mobileconfig files in the profiles folder" width="60%" />
 </div>
 
 ### Installing Profiles
@@ -300,7 +300,7 @@ The process of installing profile on Android and getting connected can be seen h
       width="315" 
       height="560"
       src="https://www.youtube.com/embed/Oz-Fsa1LgMY"
-      title="YouTube Short"
+      title="Installing a Passpoint profile on Android"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
@@ -324,7 +324,7 @@ An example can be seen in this video:
       width="315" 
       height="560"
       src="https://www.youtube.com/embed/XTgZ6-_YHYM"
-      title="YouTube Short"
+      title="Installing a Passpoint profile on iOS"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>

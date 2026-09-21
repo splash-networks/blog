@@ -1,20 +1,20 @@
 ---
-title: "Wireguard VPN Between Unifi Gateway and Ubuntu"
+title: "WireGuard VPN Between UniFi Gateway and Ubuntu"
 description: "How to connect a UniFi gateway behind NAT or CGNAT to an Ubuntu server with WireGuard so an external captive portal can reach the UniFi API."
 layout: post
 last_modified_at: 2025-09-03
 tags: [vpn, captive-portal]
 ---
 
-As a captive portal provider we often face the situation where a customer has a Unifi network which is behind a dynamic IP and NAT. An external captive portal needs to communicate with the Unifi controller via API in order to authorize guests. This requires a static public IP on the Unifi gateway device, which is often not available. To get around this situation, it's possible to set up a Wireguard client on the Unifi gateway device (such as UniFi Dream Machine, UniFi Express, UniFi Cloud Gateway etc.). This is a simpler solution compared to others such as Dynamic DNS (often a paid service) and port forwarding (might not be possible in all scenarios, such as CGNAT).
+As a captive portal provider we often face the situation where a customer has a UniFi network which is behind a dynamic IP and NAT. An external captive portal needs to communicate with the UniFi controller via API in order to authorize guests. This requires a static public IP on the UniFi gateway device, which is often not available. To get around this situation, it's possible to set up a WireGuard client on the UniFi gateway device (such as UniFi Dream Machine, UniFi Express, UniFi Cloud Gateway etc.). This is a simpler solution compared to others such as Dynamic DNS (often a paid service) and port forwarding (might not be possible in all scenarios, such as CGNAT).
 
-In this post we'll see how we can set up a Wireguard server on an Ubuntu machine and configure a Unifi gateway device as a Wireguard client.
+In this post we'll see how we can set up a WireGuard server on an Ubuntu machine and configure a UniFi gateway device as a WireGuard client.
 
-![screenshot](../assets/images/wireguard-vpn/vpn-connected.png)
+![UniFi VPN Client page listing a WireGuard client with the status Connected](../assets/images/wireguard-vpn/vpn-connected.png)
 
 <!--more-->
 
-The Ubuntu server - which in our case is the external captive portal server which needs to be able to communicate with the Unifi gateway - will be set up as the Wireguard Server.
+The Ubuntu server - which in our case is the external captive portal server which needs to be able to communicate with the UniFi gateway - will be set up as the WireGuard Server.
 
 For reference, here is the IP scheme that we'll be using:
 
@@ -25,7 +25,7 @@ For reference, here is the IP scheme that we'll be using:
 
 **_On Ubuntu Server_**
 
-Install Wireguard:
+Install WireGuard:
 
 ```
 apt install wireguard -y
@@ -40,8 +40,8 @@ wg genkey | tee client.key | wg pubkey > client.pub
 
 - wg-server.key → Private key for Ubuntu server
 - wg-server.pub → Public key for Ubuntu server
-- client.key → Private key for Unifi client
-- client.pub → Public key for Unifi client
+- client.key → Private key for UniFi client
+- client.pub → Public key for UniFi client
 
 Create server's config file:
 
@@ -88,7 +88,7 @@ AllowedIPs = 172.16.0.1/32
 PersistentKeepalive = 25
 ```
 
-Start the Wireguard server `wg0` interface and enable it:
+Start the WireGuard server `wg0` interface and enable it:
 
 ```
 systemctl start wg-quick@wg0.service
@@ -103,14 +103,14 @@ wg show wg0
 
 **_On Unifi Gateway_**
 
-On Unifi gateway device go to Settings > VPN. **VPN Type** will be `Wireguard`. Upload the configuration file `client.conf` that was created earlier.
+On UniFi gateway device go to Settings > VPN. **VPN Type** will be `WireGuard`. Upload the configuration file `client.conf` that was created earlier.
 
-![screenshot](../assets/images/wireguard-vpn/wireguard-client-setup.png)
+![UniFi VPN Client settings with the WireGuard type selected and a configuration file upload option](../assets/images/wireguard-vpn/wireguard-client-setup.png)
 
 Upon connection its status should appear like this:
 
-![screenshot](../assets/images/wireguard-vpn/vpn-setup.png)
+![UniFi WireGuard client settings with client.conf uploaded and the connection status Connected](../assets/images/wireguard-vpn/vpn-setup.png)
 
-A firewall rule needs to be added to allow the server to communicate with the client. Go to Settings > Security and add an Advanced rule. Type should be `Internet Local` and should allow traffic from the source IP of `172.16.0.1` which is the Wireguard server's IP in our case.
+A firewall rule needs to be added to allow the server to communicate with the client. Go to Settings > Security and add an Advanced rule. Type should be `Internet Local` and should allow traffic from the source IP of `172.16.0.1` which is the WireGuard server's IP in our case.
 
-![screenshot](../assets/images/wireguard-vpn/firewall-rule.png)
+![UniFi advanced firewall rule of type Internet Local that accepts traffic from the WireGuard server address](../assets/images/wireguard-vpn/firewall-rule.png)

@@ -7,7 +7,7 @@ last_modified_at: 2020-12-26
 tags: [pfsense, vpn]
 ---
 
-![screenshot](../assets/images/web-filtering/title.png)
+![pfSense and Squid logos with a filter funnel](../assets/images/web-filtering/title.png)
 
 This post is about implementing web filtering as a service using a cloud hosted pfSense appliance. Using the setup documented below it is possible to offer web and URL filtering as a service for a safe web experience for schools, businesses and homes. It will also allow visibility into users’ traffic for compliance and logging purposes. This setup was tested on a pfSense appliance v*2.4.5-RELEASE-p1* that was installed on an AWS EC2 instance (that setup is outside the scope of this post).
 
@@ -19,43 +19,43 @@ Users will use OpenVPN to connect to the pfSense appliance – which will be the
 
 To configure OpenVPN go to VPN => OpenVPN. The pfSense AWS appliance already has an OpenVPN server configured which is in disabled state. Select the edit icon at the right to set it up:
 
-![screenshot](../assets/images/web-filtering/1.png)
+![pfSense OpenVPN Servers list with the edit icon highlighted](../assets/images/web-filtering/1.png)
 
 This opens up OpenVPN server settings. Uncheck the Disabled option to enable OpenVPN server. Select Server Mode as Remote Access (User Auth). Protocol should be “UDP on IPv4 only”. The rest of the settings should be kept as per the defaults:
 
-![screenshot](../assets/images/web-filtering/2.png)
+![pfSense OpenVPN server general settings with server mode Remote Access (User Auth) and UDP on IPv4 only](../assets/images/web-filtering/2.png)
 
 Select these as the NCP algorithms:
 
-![screenshot](../assets/images/web-filtering/3.png)
+![pfSense OpenVPN NCP algorithms with AES-128-GCM and AES-128-CBC allowed](../assets/images/web-filtering/3.png)
 
 Update the default subnet if needed. Redirect IPv4 Gateway option should be checked:
 
-![screenshot](../assets/images/web-filtering/4.png)
+![pfSense OpenVPN tunnel settings with an IPv4 tunnel network and Redirect IPv4 Gateway checked](../assets/images/web-filtering/4.png)
 
 In DNS Server settings provide the IP of local Unbound DNS Resolver which we will setup later:
 
-![screenshot](../assets/images/web-filtering/5.png)
+![pfSense OpenVPN advanced client settings with a DNS server enabled and its address entered](../assets/images/web-filtering/5.png)
 
 In Gateway Creation select IPv4 only:
 
-![screenshot](../assets/images/web-filtering/ipv4.png)
+![pfSense OpenVPN Gateway creation option set to IPv4 only](../assets/images/web-filtering/ipv4.png)
 
 Go to System => Package Manager to install OpenVPN Client Export package. This package allows us to export .ovpn configuration files for OpenVPN clients.
 
 To export .ovpn file go to VPN => OpenVPN => Client Export. In Host Name Resolution select Other, enter the WAN IP address of the AWS pfSense Instance and save these settings:
 
-![screenshot](../assets/images/web-filtering/6.png)
+![pfSense OpenVPN Client Export with Host Name Resolution set to Other and the server address entered](../assets/images/web-filtering/6.png)
 
 Download configurations for your required client type (for Windows select Most Clients):
 
-![screenshot](../assets/images/web-filtering/7.png)
+![pfSense OpenVPN Client Export download buttons with Most Clients highlighted](../assets/images/web-filtering/7.png)
 
 Create a local user in System => User Manager for authentication ( it is also possible to use RADIUS authentication instead of local).
 
 Use the downloaded configuration file and the login credentials created in User Manager to connect using OpenVPN client:
 
-![screenshot](../assets/images/web-filtering/8.png)
+![Windows notification showing the pfSense OpenVPN connection is connected with an assigned IP address](../assets/images/web-filtering/8.png)
 
 To setup static IP for an OpenVPN client (so that IP based rules can be later setup for that client) go to VPN => OpenVPN => Client Specific Overrides and click Add.
 
@@ -65,7 +65,7 @@ In name field enter the username of the VPN user, and in Advanced enter the stat
 ifconfig-push 172.24.42.100 255.255.255.0;
 ```
 
-![screenshot](../assets/images/web-filtering/9.png)
+![pfSense OpenVPN client specific override with an ifconfig-push static IP address in the Advanced field](../assets/images/web-filtering/9.png)
 
 Press Save to save changes.
 
@@ -73,7 +73,7 @@ Press Save to save changes.
 
 In pfSense go to Interface => Assignments and assign the OpenVPN *ovpns1* interface to LAN (this assignment will come in handy when we have to setup Squid proxy later):
 
-![screenshot](../assets/images/web-filtering/10.png)
+![pfSense Interface Assignments with the OpenVPN ovpns1 interface assigned to LAN](../assets/images/web-filtering/10.png)
 
 Select LAN and enable this interface.
 
@@ -81,15 +81,15 @@ In Firewall rules make sure the rules allow OpenVPN access and other related ser
 
 ### DNS Server Setup
 
-It is vitally important that the clients and pfSense appliance both use the same caching DNS server in this setup, otherwise many popular websites like Google, Youtube, Reddit will not open (check [this](https://wiki.squid-cache.org/KnowledgeBase/HostHeaderForgery) link for the technical explanation). Therefore we will setup Unbound DNS server on pfSense.
+It is vitally important that the clients and pfSense appliance both use the same caching DNS server in this setup, otherwise many popular websites like Google, YouTube, Reddit will not open (check [this](https://wiki.squid-cache.org/KnowledgeBase/HostHeaderForgery) link for the technical explanation). Therefore we will setup Unbound DNS server on pfSense.
 
 Go to Services => DNS Resolver. Enable it and make sure it is enabled on all interfaces.
 
-![screenshot](../assets/images/web-filtering/11.png)
+![pfSense DNS Resolver options with Enable DNS resolver checked and All network interfaces selected](../assets/images/web-filtering/11.png)
 
 Uncheck DNSSEC Support:
 
-![screenshot](../assets/images/web-filtering/12.png)
+![pfSense DNS Resolver with Enable DNSSEC Support unchecked](../assets/images/web-filtering/12.png)
 
 Click Save at the bottom of the page.
 
@@ -99,23 +99,23 @@ Go to System => Package Manager and download the packages named Squid and squidG
 
 After installation go to Services => Squid Proxy Server. First, we need to setup Local Cache. Go to Local Cache, set Hard Disk Cache Size as 500 MB and Clear Disk Cache once.
 
-![screenshot](../assets/images/web-filtering/13.png)
+![Squid hard disk cache settings with the cache size set to 500 MB and the Clear Disk Cache NOW button highlighted](../assets/images/web-filtering/13.png)
 
 Click Save and go back to the General tab. Under Squid General Settings check Enable Squid Proxy option and select all interfaces in Proxy Interface(s).
 
-![screenshot](../assets/images/web-filtering/14.png)
+![Squid general settings with Enable Squid Proxy checked and the proxy interfaces list](../assets/images/web-filtering/14.png)
 
 Under Transparent Proxy Settings enable Transparent HTTP Proxy and select all interfaces.
 
-![screenshot](../assets/images/web-filtering/15.png)
+![Squid transparent proxy settings with Transparent HTTP Proxy enabled and interfaces selected](../assets/images/web-filtering/15.png)
 
 Similarly, under SSL Man in the Middle Filtering enable HTTPS/SSL Interception, SSL/MITM Mode should be “Splice All” and select all interfaces:
 
-![screenshot](../assets/images/web-filtering/16.png)
+![Squid SSL Man in the Middle filtering with HTTPS/SSL Interception enabled and Splice All mode](../assets/images/web-filtering/16.png)
 
 Enable Access Logging and click Save at the bottom of the page:
 
-![screenshot](../assets/images/web-filtering/17.png)
+![Squid logging settings with Enable Access Logging checked](../assets/images/web-filtering/17.png)
 
 Squid Proxy has been set up.
 
@@ -125,21 +125,21 @@ To send Squid logs to syslog click on the “Show Advanced Options” button at 
 access_log syslog:local4.info
 ```
 
-![screenshot](../assets/images/web-filtering/18.png)
+![Squid custom options box containing the access_log syslog directive](../assets/images/web-filtering/18.png)
 
 Now we will configure SquidGuard Proxy Filter. Go to Services => SquidGuard Proxy Filter. Go to Target Categories and create a rule for URL filtering. In Domain List enter the domains you want to blacklist or whitelist:
 
-![screenshot](../assets/images/web-filtering/19.png)
+![SquidGuard Target categories tab with a custom_test rule and a domain list](../assets/images/web-filtering/19.png)
 
 Under General Options check Enable and click Apply. Under Logging options check Enable log and Enable log rotation.
 
-![screenshot](../assets/images/web-filtering/20.png)
+![SquidGuard logging options with Enable log and Enable log rotation checked](../assets/images/web-filtering/20.png)
 
 Click Save and Apply.
 
 To apply common rules that apply to all users go to Common ACL and setup access rules like this:
 
-![screenshot](../assets/images/web-filtering/21.png)
+![SquidGuard Common ACL tab with the default access rule and Do not allow IP-Addresses in URL checked](../assets/images/web-filtering/21.png)
 
 The “Default access [all]” rule applies to all traffic. If we set it to “allow” it will allow all websites by default and any domains that need to be filtered will have to be blacklisted manually. If we set it to “deny” all domains will be blocked by default and any domain that needs to be allowed will have to be whitelisted manually.
 
@@ -147,7 +147,7 @@ It’s a good practice to check “Do not allow IP-Addresses in URL” so that u
 
 After any configuration change in SquidGuard, click on the Apply button in General Settings for the changes to take effect:
 
-![screenshot](../assets/images/web-filtering/22.png)
+![SquidGuard general settings with Enable checked and the Apply button highlighted](../assets/images/web-filtering/22.png)
 
 ### Per User URL Filtering
 
@@ -155,7 +155,7 @@ To apply different URL filtering rules for different users, go to Groups ACL and
 
 In Client (source) enter the static IP address of the user:
 
-![screenshot](../assets/images/web-filtering/23.png)
+![SquidGuard Groups ACL rule with a client IP address as source and the custom_test category set to deny](../assets/images/web-filtering/23.png)
 
 In Target Rules enter the URL filtering policies for the user. In this case the domains mentioned in the “custom_test” ruleset will be blocked while all other websites will be allowed for this user.
 
@@ -163,19 +163,19 @@ In Target Rules enter the URL filtering policies for the user. In this case the 
 
 The websites being visited by users are shown in the Squid access logs:
 
-![screenshot](../assets/images/web-filtering/24.png)
+![pfSense Squid access log table listing requests from a client IP address](../assets/images/web-filtering/24.png)
 
 Another tool for Squid reporting is LightSquid. To use it install the Lightsquid package. Then set it up by going to Status => Squid Proxy Reports. Configure its settings and click on the Refresh Full button. Then click on the Open Lightsquid button to access Lightsquid reports. It can give per-user (per-IP) reports of domains visited by the user as well as the data transferred:
 
-![screenshot](../assets/images/web-filtering/25.png)
+![LightSquid user access report listing the sites a client visited](../assets/images/web-filtering/25.png)
 
 The total upload/download of a user can be seen in Status => OpenVPN:
 
-![screenshot](../assets/images/web-filtering/26.png)
+![pfSense Status OpenVPN page showing a connected client with bytes sent and received](../assets/images/web-filtering/26.png)
 
 To enable remote logging to a syslog server, go to Status => System Logs => Settings and click on Enable Remote Logging. Enter the IP address(es) of remote syslog servers and select the log categories:
 
-![screenshot](../assets/images/web-filtering/27.png)
+![pfSense system log settings with remote logging enabled and Everything selected for remote syslog contents](../assets/images/web-filtering/27.png)
 
 By selecting Everything all syslogs from the pfSense appliance including Squid logs would then be available on the Syslog server.
 
@@ -189,4 +189,4 @@ It will start sending all new entries in */var/squidGuard/log/block.log* to sysl
 
 ### References
 
-[https://openschoolsolutions.org/pfsense-web-filter-filter-https-squidguard/]()
+[https://openschoolsolutions.org/pfsense-web-filter-filter-https-squidguard/](https://openschoolsolutions.org/pfsense-web-filter-filter-https-squidguard/)
