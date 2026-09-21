@@ -1,6 +1,10 @@
 ---
 title: "Passpoint Setup Guide using FreeRADIUS and Mikrotik"
+description: "Step-by-step Passpoint (Hotspot 2.0) setup with MikroTik and FreeRADIUS, plus how to generate Passpoint profiles for Android and iOS."
 layout: post
+image: /assets/images/passpoint-setup-guide/banner.png
+last_modified_at: 2026-03-03
+tags: [passpoint, freeradius, mikrotik, wifi-authentication]
 ---
 
 People are often wary of using public Wi‑Fi because it lacks security. Captive portals, open authentication, and shared passwords make public networks vulnerable and inconvenient.

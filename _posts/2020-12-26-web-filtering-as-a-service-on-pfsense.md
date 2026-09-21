@@ -1,6 +1,10 @@
 ---
 title: "Web Filtering as a Service on pfSense"
+description: "How to offer web filtering as a service with cloud-hosted pfSense, OpenVPN, Squid transparent proxy and SquidGuard for schools, businesses and homes."
 layout: post
+image: /assets/images/web-filtering/title.png
+last_modified_at: 2020-12-26
+tags: [pfsense, vpn]
 ---
 
 ![screenshot](../assets/images/web-filtering/title.png)

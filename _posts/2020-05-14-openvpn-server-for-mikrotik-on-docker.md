@@ -1,6 +1,10 @@
 ---
 title: "OpenVPN Server for Mikrotik On Docker"
+description: "How to run an OpenVPN server in Docker and connect a MikroTik router behind NAT as a client, including MikroTik's OpenVPN limitations."
 layout: post
+image: /assets/images/openvpn-server-mikrotik/title.png
+last_modified_at: 2020-05-14
+tags: [vpn, mikrotik]
 ---
 
 ![screenshot](../assets/images/openvpn-server-mikrotik/title.png)
