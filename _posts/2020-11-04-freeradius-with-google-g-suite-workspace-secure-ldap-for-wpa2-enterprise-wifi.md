@@ -1,5 +1,5 @@
 ---
-title: "FreeRADIUS with Google G Suite/Workspace Secure LDAP for WPA2 Enterprise WiFi"
+title: "FreeRADIUS with Google G Suite/Workspace Secure LDAP for WPA2 Enterprise Wi-Fi"
 description: "How to integrate FreeRADIUS with Google Workspace Secure LDAP to authenticate WPA2 Enterprise Wi-Fi users on Ubiquiti UniFi, tested on Debian 10."
 layout: post
 image: /assets/images/freeradius-google-g-suite/title.png
@@ -7,9 +7,9 @@ last_modified_at: 2020-11-04
 tags: [freeradius, google-workspace, wifi-authentication]
 ---
 
-![screenshot](../assets/images/freeradius-google-g-suite/title.png)
+![FreeRADIUS, Google G Suite and Ubiquiti Networks logos](../assets/images/freeradius-google-g-suite/title.png)
 
-This post documents the process of integrating FreeRADIUS with Google G Suite (now Workspace) using Secure LDAP. FreeRADIUS will be used to authenticate Ubiquiti Unifi WPA2 Enterprise WiFi users. The configurations presented here are taken from [this](https://github.com/hacor/unifi-freeradius-ldap) wonderful repository. While the repo uses Docker, we will be implementing these settings in FreeRADIUS directly. These settings were tested on Debian 10.
+This post documents the process of integrating FreeRADIUS with Google G Suite (now Workspace) using Secure LDAP. FreeRADIUS will be used to authenticate Ubiquiti UniFi WPA2 Enterprise Wi-Fi users. The configurations presented here are taken from [this](https://github.com/hacor/unifi-freeradius-ldap) wonderful repository. While the repo uses Docker, we will be implementing these settings in FreeRADIUS directly. These settings were tested on Debian 10.
 
 <!--more-->
 
@@ -171,19 +171,19 @@ Use the following command to restart FreeRADIUS service for new settings to take
 systemctl restart freeradius.service
 ```
 
-FreeRADIUS settings are now complete. On the Unifi Controller, go to Settings -> Wireless Networks and either create a new wireless network or edit an existing network. In Security select WPA Enterprise:
+FreeRADIUS settings are now complete. On the UniFi Controller, go to Settings -> Wireless Networks and either create a new wireless network or edit an existing network. In Security select WPA Enterprise:
 
-![screenshot](../assets/images/freeradius-google-g-suite/1.png)
+![UniFi Network wireless network settings with the WPA Enterprise security option highlighted](../assets/images/freeradius-google-g-suite/1.png)
 
 It will require a RADIUS Profile to be specified. Click on “Create new RADIUS profile”. Enter a name for the profile and specify the IP address of your RADIUS server and its shared secret (created earlier).
 
-![screenshot](../assets/images/freeradius-google-g-suite/2.png)
+![UniFi Create new RADIUS profile dialog with the profile name, server IP address and shared secret highlighted](../assets/images/freeradius-google-g-suite/2.png)
 
 Save the changes made to RADIUS profile and Wireless network.
 
 To setup a mobile client to connect to this network enter your G-Suite Username and password like this:
 
-![screenshot](../assets/images/freeradius-google-g-suite/3.png)
+![Android Wi-Fi settings with EAP method TTLS, phase 2 authentication GTC, identity and password highlighted](../assets/images/freeradius-google-g-suite/3.png)
 
 Note: Users are free to enter only their User ID or complete email address in *\<UserID>@example.com* format. It should work either way.
 
@@ -298,19 +298,19 @@ systemctl restart freeradius
 
 Download *ca.pem* and *ca.der* certificates from */etc/freeradius/3.0/certs/* and distribute to your clients. On a Windows client, *ca.der* certificate can be installed by double-clicking on it and following the installation wizard:
 
-![screenshot](../assets/images/freeradius-google-g-suite/4.png)
+![Windows certificate dialog for the CA root certificate with the Install Certificate button highlighted](../assets/images/freeradius-google-g-suite/4.png)
 
 Place the certificate in *Trusted Root Certification Authorities* store:
 
-![screenshot](../assets/images/freeradius-google-g-suite/5.png)
+![Windows Certificate Import Wizard with the Trusted Root Certification Authorities store selected](../assets/images/freeradius-google-g-suite/5.png)
 
 After completing the wizard, accept the security warning:
 
-![screenshot](../assets/images/freeradius-google-g-suite/6.png)
+![Windows security warning asking to confirm installing the root CA certificate](../assets/images/freeradius-google-g-suite/6.png)
 
-Connect to the WiFi by entering your username and password. If it shows you the certificate information click on Connect to continue:
+Connect to the Wi-Fi by entering your username and password. If it shows you the certificate information click on Connect to continue:
 
-![screenshot](../assets/images/freeradius-google-g-suite/7.png)
+![Windows Wi-Fi connection prompt showing the RADIUS server certificate details and a Connect button](../assets/images/freeradius-google-g-suite/7.png)
 
 #### UBUNTU
 
@@ -326,9 +326,9 @@ Download *ca.crt* file and put it in */usr/local/share/ca-certificates/* directo
 sudo update-ca-certificates
 ```
 
-Connect to WiFi by selecting Authentication *Tunneled TLS*, Inner authentication *GTC* and entering your username and password:
+Connect to Wi-Fi by selecting Authentication *Tunneled TLS*, Inner authentication *GTC* and entering your username and password:
 
-![screenshot](../assets/images/freeradius-google-g-suite/8.png)
+![Ubuntu Wi-Fi authentication dialog with WPA and WPA2 Enterprise, Tunneled TLS and GTC inner authentication](../assets/images/freeradius-google-g-suite/8.png)
 
 ### Troubleshooting
 

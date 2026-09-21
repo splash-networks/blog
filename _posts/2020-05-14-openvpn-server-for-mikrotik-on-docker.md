@@ -1,5 +1,5 @@
 ---
-title: "OpenVPN Server for Mikrotik On Docker"
+title: "OpenVPN Server for MikroTik On Docker"
 description: "How to run an OpenVPN server in Docker and connect a MikroTik router behind NAT as a client, including MikroTik's OpenVPN limitations."
 layout: post
 image: /assets/images/openvpn-server-mikrotik/title.png
@@ -7,13 +7,13 @@ last_modified_at: 2020-05-14
 tags: [vpn, mikrotik]
 ---
 
-![screenshot](../assets/images/openvpn-server-mikrotik/title.png)
+![OpenVPN, MikroTik and Docker logos](../assets/images/openvpn-server-mikrotik/title.png)
 
-A convenient way to remotely access and manage a Mikrotik router that is behind NAT is to set it up as an OpenVPN client. It will then be accessible from the VPN server or by other VPN clients. In this guide we’ll document a procedure for setting up an OpenVPN server in Docker and configure it to work with Mikrotik.
+A convenient way to remotely access and manage a MikroTik router that is behind NAT is to set it up as an OpenVPN client. It will then be accessible from the VPN server or by other VPN clients. In this guide we’ll document a procedure for setting up an OpenVPN server in Docker and configure it to work with MikroTik.
 
 <!--more-->
 
-There are a few limitations in Mikrotik’s implementation of OpenVPN client that we need to keep in mind:
+There are a few limitations in MikroTik’s implementation of OpenVPN client that we need to keep in mind:
 
 - It only supports TCP and not UDP
 - TLS-Auth is not supported
@@ -163,7 +163,7 @@ With this configuration the client `mikrotik1` will always get the static IP `19
 
 ### Mikrotik Client Setup
 
-Copy certificates and keys from OpenVPN server to Mikrotik router.
+Copy certificates and keys from OpenVPN server to MikroTik router.
 
 Go to OpenVPN server’s volume mountpoint and download these three files to your local computer:
 
@@ -181,27 +181,27 @@ Their paths are given below:
 | mikrotik1.crt | /var/lib/docker/volumes/ovpn-data/_data/pki/issued  |
 | mikrotik1.key | /var/lib/docker/volumes/ovpn-data/_data/pki/private |
 
-Open Mikrotik router using Winbox and drag and drop these files:
+Open MikroTik router using WinBox and drag and drop these files:
 
-![screenshot](../assets/images/openvpn-server-mikrotik/1.png)
+![Certificate and key files being dragged from a folder into the WinBox Files window](../assets/images/openvpn-server-mikrotik/1.png)
 
 *Install Certificates:*
 
 Go to System -> Certificates and import `ca.crt`:
 
-![screenshot](../assets/images/openvpn-server-mikrotik/2.png)
+![MikroTik Certificates import dialog with ca.crt selected in the file list](../assets/images/openvpn-server-mikrotik/2.png)
 
 The passphrase for CA will also have to be entered.
 
 Similarly import `mikrotik1.crt` and `mikrotik1.key` (passphrase will not be required for importing these).
 
-![screenshot](../assets/images/openvpn-server-mikrotik/3.png)
+![MikroTik Certificates list showing the imported CA and client certificates](../assets/images/openvpn-server-mikrotik/3.png)
 
 *Create an OVPN Client connection:*
 
 Go to PPP -> Interface and add a new “OVPN Client” interface. Give it a name of your choice. Go to “Dial Out” tab and set the following properties:
 
-![screenshot](../assets/images/openvpn-server-mikrotik/4.png)
+![MikroTik OVPN client interface Dial Out tab with port 1194 and the client certificate, status connected](../assets/images/openvpn-server-mikrotik/4.png)
 
 The IP address/hostname of the server needs to be entered in the “Connect To” field. The username and password can be anything; it doesn’t really matter. However, they are mandatory and cannot be left blank. If everything went well your VPN should be connected.
 

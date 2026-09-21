@@ -7,9 +7,9 @@ last_modified_at: 2023-02-28
 tags: [freeradius, google-workspace, wifi-authentication]
 ---
 
-![screenshot](../assets/images/group-based-vlan-assignment/title.png)
+![FreeRADIUS and Google G Suite logos](../assets/images/group-based-vlan-assignment/title.png)
 
-In this post we’ll be looking at using FreeRADIUS integrated with Google Workspace Secure LDAP to perform VLAN assignment for WPA enterprise users. This setup has been tested with Ubiquiti Unifi and Cisco Meraki successfully. FreeRADIUS setup and Google Workspace integration has been covered in a previous post so please check it out to understand the prerequisites of this setup.
+In this post we’ll be looking at using FreeRADIUS integrated with Google Workspace Secure LDAP to perform VLAN assignment for WPA enterprise users. This setup has been tested with Ubiquiti UniFi and Cisco Meraki successfully. FreeRADIUS setup and Google Workspace integration has been covered in a previous post so please check it out to understand the prerequisites of this setup.
 
 <!--more-->
 
