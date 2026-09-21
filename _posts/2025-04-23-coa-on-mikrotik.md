@@ -1,6 +1,9 @@
 ---
 title: "RADIUS Change of Authorization (CoA) on Mikrotik"
+description: "How to send RADIUS Change of Authorization (CoA) from FreeRADIUS to a MikroTik router to update hotspot user sessions over UDP port 3799."
 layout: post
+last_modified_at: 2025-04-23
+tags: [freeradius, mikrotik, captive-portal]
 ---
 
 To trigger Change of Authorization (CoA) from FreeRADIUS to a Mikrotik router to update the session parameters of a hotspot user you can follow these steps:

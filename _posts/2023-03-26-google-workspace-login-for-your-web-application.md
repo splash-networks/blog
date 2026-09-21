@@ -1,6 +1,10 @@
 ---
 title: "Google Workspace Login for Your Web Application"
+description: "Step-by-step guide to adding Google Workspace login to your web application using an OAuth consent screen and an OAuth client ID."
 layout: post
+image: /assets/images/google-workspace/title.png
+last_modified_at: 2023-03-26
+tags: [google-workspace]
 ---
 
 ![screenshot](../assets/images/google-workspace/title.png)

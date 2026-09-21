@@ -1,6 +1,9 @@
 ---
 title: "Captive Portal Identification (RFC 8910) and API (RFC 8908) on Mikrotik"
+description: "How to set up RFC 8910 captive portal identification (DHCP Option 114) and the RFC 8908 captive portal API on MikroTik with a TLS certificate."
 layout: post
+last_modified_at: 2025-04-27
+tags: [captive-portal, mikrotik, api]
 ---
 
 RFC 8910 specifies the use of DHCP Option 114 for captive portal identification. Using this DHCP option, endpoints can learn the address of the captive portal API server and contact it to find out the URL of the captive portal server.

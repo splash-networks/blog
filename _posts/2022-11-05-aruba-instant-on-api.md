@@ -1,6 +1,10 @@
 ---
 title: "Aruba Instant On API"
+description: "Aruba Instant On has no public API. This guide documents its cloud API endpoints, with a Postman collection for automating sites in bulk."
 layout: post
+image: /assets/images/aruba-instant-on-api/title.png
+last_modified_at: 2022-11-05
+tags: [api]
 ---
 
 ![screenshot](../assets/images/aruba-instant-on-api/title.png)

@@ -1,6 +1,10 @@
 ---
 title: "FreeRADIUS with Google G Suite/Workspace Secure LDAP for WPA2 Enterprise WiFi"
+description: "How to integrate FreeRADIUS with Google Workspace Secure LDAP to authenticate WPA2 Enterprise Wi-Fi users on Ubiquiti UniFi, tested on Debian 10."
 layout: post
+image: /assets/images/freeradius-google-g-suite/title.png
+last_modified_at: 2020-11-04
+tags: [freeradius, google-workspace, wifi-authentication]
 ---
 
 ![screenshot](../assets/images/freeradius-google-g-suite/title.png)

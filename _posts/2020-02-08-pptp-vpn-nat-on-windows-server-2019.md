@@ -1,6 +1,10 @@
 ---
 title: "PPTP VPN & NAT on Windows Server 2019"
+description: "How to set up a PPTP VPN with NAT on Windows Server 2019 using a single network interface, as on most cloud VPS deployments."
 layout: post
+image: /assets/images/pptp-vpn/title.png
+last_modified_at: 2020-02-08
+tags: [vpn]
 ---
 
 ![screenshot](../assets/images/pptp-vpn/title.png)

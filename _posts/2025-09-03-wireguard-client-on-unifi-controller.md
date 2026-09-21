@@ -1,6 +1,9 @@
 ---
 title: "Wireguard VPN Between Unifi Gateway and Ubuntu"
+description: "How to connect a UniFi gateway behind NAT or CGNAT to an Ubuntu server with WireGuard so an external captive portal can reach the UniFi API."
 layout: post
+last_modified_at: 2025-09-03
+tags: [vpn, captive-portal]
 ---
 
 As a captive portal provider we often face the situation where a customer has a Unifi network which is behind a dynamic IP and NAT. An external captive portal needs to communicate with the Unifi controller via API in order to authorize guests. This requires a static public IP on the Unifi gateway device, which is often not available. To get around this situation, it's possible to set up a Wireguard client on the Unifi gateway device (such as UniFi Dream Machine, UniFi Express, UniFi Cloud Gateway etc.). This is a simpler solution compared to others such as Dynamic DNS (often a paid service) and port forwarding (might not be possible in all scenarios, such as CGNAT).
