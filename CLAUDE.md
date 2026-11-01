@@ -34,7 +34,7 @@ Pushing to `master` triggers `.github/workflows/notification.yml`: `jekyll build
 - Styles: `_sass/` partials are imported by `assets/css/frame.sass` (used when `show_frame: true`, currently on) and `index.sass`. `_includes/sidebar.html` and `assets/css/sidebar.sass` are only used when `show_sidebar: true` (currently off).
 - Icons come from the SVG sprite `assets/fontawesome/icons.svg` (`<use xlink:href="...#<icon>">`), so an `icon:` in `_config.yml` must exist in that sprite. `_data/font-awesome/icons.json` is not referenced by any template.
 - Comments (Disqus/Isso) are wired up in `default.html`/`post.html` but disabled (keys commented out in `_config.yml`).
-- `post.html` renders the body through `_includes/anchor_headings.html`, a Liquid-only include that adds a hover `#` link (`.anchor`, styled in `_sass/classes.sass`) to every `h2`–`h4`, pointing at the `id` kramdown generates from the heading text (e.g. `## FreeRADIUS Setup` → `#freeradius-setup`). Pages, the home excerpts and the feed are not affected.
+- `post.html` renders the body through `_includes/anchor_headings.html`, a Liquid-only include that adds a hover `#` link (`.anchor`, styled in `_sass/classes.sass`) to every `h2`–`h4`, pointing at the `id` kramdown generates from the heading text (e.g. `## FreeRADIUS Setup` → `#freeradius-setup`). Pages, the home excerpts and the feed are not affected. A small inline script at the end of `post.html` also copies the section URL to the clipboard when the `#` is clicked and briefly shows "Link copied" (`.anchor.copied`); if the clipboard isn't available, the click still just jumps to the section.
 - `_includes/embed.html` embeds a URL in a responsive 16:9 iframe (`{% include embed.html url="..." %}`), for videos.
 
 ## Writing posts
