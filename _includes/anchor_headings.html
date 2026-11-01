@@ -1,0 +1,18 @@
+{%- comment -%}
+  Adds a hover "#" link to every h2-h4 that kramdown gave an id.
+  Usage: {% include anchor_headings.html html=content %}
+{%- endcomment -%}
+{%- assign parts = include.html | split: "<h" -%}
+{%- for part in parts -%}
+  {%- if forloop.first -%}{{ part }}{%- continue -%}{%- endif -%}
+  {%- assign start = part | slice: 0, 5 -%}
+  {%- if start == '2 id=' or start == '3 id=' or start == '4 id=' -%}
+    {%- assign level = part | slice: 0 -%}
+    {%- assign id = part | split: 'id="' | slice: 1 | first | split: '"' | first -%}
+    {%- capture close %}</h{{ level }}>{% endcapture -%}
+    {%- capture link %} <a class="anchor" href="#{{ id }}" aria-label="Link to this section">#</a>{{ close }}{% endcapture -%}
+<h{{ part | replace_first: close, link }}
+  {%- else -%}
+<h{{ part }}
+  {%- endif -%}
+{%- endfor -%}
