@@ -12,3 +12,15 @@ layout: default
     <noscript>Please enable JavaScript to view comments.</noscript>
   {% endif %}
 </article>
+
+<script>
+  // Clicking a heading's "#" also copies the section link
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a.anchor');
+    if (!a || !navigator.clipboard) return;
+    navigator.clipboard.writeText(a.href).then(function () {
+      a.classList.add('copied');
+      setTimeout(function () { a.classList.remove('copied'); }, 1500);
+    }, function () {});
+  });
+</script>
