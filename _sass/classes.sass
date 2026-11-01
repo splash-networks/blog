@@ -35,6 +35,18 @@
 a:hover .icon
   color: reduce(100)
 
+h2, h3, h4
+  scroll-margin-top: 1em
+
+.anchor
+  opacity: 0
+  transition: .2s opacity
+  &:hover
+    text-decoration: inherit
+
+h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, .anchor:focus
+  opacity: 1
+
 .full table
   display: table
   width: 100%

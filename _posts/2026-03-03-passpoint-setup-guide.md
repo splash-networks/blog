@@ -17,7 +17,7 @@ In this guide, we configure Passpoint using MikroTik and FreeRADIUS, and then ge
 
 An 802.11u supported MikroTik AP (MikroTik cAP ac in our case) will work as a Passpoint (Hotspot 2.0) access point and forward authentication requests to the RADIUS server.
 
-## Mikrotik Setup:
+## MikroTik Setup
 
 First we'll go to Wireless > Security Profiles and create a new Security Profile. These settings are configured:
 
